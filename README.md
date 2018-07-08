@@ -1,3 +1,5 @@
+# Lexicon Editor [(link)](https://jaculabilis.github.io/lexicon-editor/)
+
 Lexipython provides support for a limited amount of Markdown-esque formatting.
 
 ```
