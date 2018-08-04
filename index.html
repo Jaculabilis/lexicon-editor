@@ -72,6 +72,12 @@
 				content += "<p>" + citationList[i] + "</p>\n";
 			}
 		}
+		// Calculate approximate word count
+		var wordCount = text.trim().split(/\s+/).length;
+		if (text.trim().length < 1)
+			wordCount = 0;
+		content += "<p><i>Article length: approx. " + wordCount + " words</p>";
+
 		return content;
 	}
 
