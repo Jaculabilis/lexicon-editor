@@ -20,7 +20,7 @@
 
 	function parseLexipythonMarkdown(text) {
 		// Parse the content and extract citations
-		var paras = text.trim().split("\n\n");
+		var paras = text.trim().split(/\n\n+/);
 		content = "";
 		citationList = [];
 		formatId = 1;
