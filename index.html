@@ -24,9 +24,7 @@
 		content = "";
 		citationList = [];
 		formatId = 1;
-		if (paras.length == 0) {
-			return "<i>[No article text]</i>";
-		}
+		hasSignature = false;
 		for (var i = 0; i < paras.length; i++) {
 			var para = paras[i];
 			// Escape angle brackets
@@ -61,10 +59,14 @@
 			// Convert signature to right-aligned
 			if (para.length > 0 && para[0] == "~") {
 				para = "<hr><span class=\"signature\"><p>" + para.slice(1) + "</p></span>";
+				hasSignature = true;
 			} else {
 				para = "<p>" + para + "</p>\n";
 			}
 			content += para;
+		}
+		if (!hasSignature) {
+			content += "<p><span style=\"color:#dd0000\">Article has no signature</span></p>";
 		}
 		if (citationList.length > 0) {
 			content += "<p><i>The following articles will be cited:</i></p>\n";
@@ -106,6 +108,13 @@
 	}
 
 	window.onload = updatePreview;
+
+	window.addEventListener("beforeunload", function(e) {
+		var hasText = document.getElementById("article-body").value.length > 0;
+		if (hasText) {
+			e.returnValue = "Are you sure?";
+		}
+	});
 </script>
 </head>
 <body>
